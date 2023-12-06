@@ -27,7 +27,7 @@ export function UserTable({ users }: Props) {
               <td>{user.name.first}</td>
               <td>{user.name.last}</td>
               <td>{user.location.country}</td>
-              <td></td>
+              <td><button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Eliminar</button></td>
             </tr>
           )
         })}
