@@ -2,17 +2,22 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { UserTable } from './components/UserTable/UserTable';
 
-export function App() {
+const App: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const [showColor, setColor] = useState(false);
+  const [showColor, setShowColor] = useState(false);
   const [sortByCountry, setSortByCountry] = useState(false);
 
   const toggleColor = () => {
-    setColor(!showColor);
+    setShowColor((prevShowColor) => !prevShowColor);
   };
 
   const toggleSortByCountry = () => {
-    setSortByCountry((prevState) => !prevState);
+    setSortByCountry((prevSortByCountry) => !prevSortByCountry);
+  };
+
+  const handleDelete = (email: string) => {
+    const filteredUsers = users.filter((user) => user.email !== email)
+    setUsers(filteredUsers);
   };
 
   useEffect(() => {
@@ -42,10 +47,10 @@ export function App() {
         </button>
       </header>
       <main>
-        <UserTable showColor={showColor} users={sortedUsers} />
+        <UserTable showColor={showColor} users={sortedUsers} deleteUser={handleDelete} />
       </main>
     </div>
   );
-}
+};
 
 export default App;
