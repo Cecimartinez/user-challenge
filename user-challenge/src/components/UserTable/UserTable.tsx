@@ -21,13 +21,11 @@ export function UserTable({ showColor, users }: Props) {
       <tbody>
         {users.map((user, index) => {
           const isEvenIndex = index % 2 === 0;
-
-          // Aplica colores solo si showColor es verdadero
           const rowColorClass = showColor ? (isEvenIndex? 'bg-red-500' : 'bg-blue-500') : '';
-          console.log(index);
+          // console.log(index);
 
           return (
-            <tr key={user.id.value} className={rowColorClass}>
+            <tr key={index} className={rowColorClass}>
               <td>
                 <img src={user.picture.thumbnail} alt="Foto de perfil" className="w-10 h-10" />
               </td>
