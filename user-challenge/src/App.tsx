@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import { UserTable } from './components/UserTable/UserTable';
 
@@ -6,6 +6,7 @@ const App: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [showColor, setShowColor] = useState(false);
   const [sortByCountry, setSortByCountry] = useState(false);
+  const originalUsers = useRef<User[]>([])
 
   const toggleColor = () => {
     setShowColor((prevShowColor) => !prevShowColor);
@@ -20,11 +21,18 @@ const App: React.FC = () => {
     setUsers(filteredUsers);
   };
 
+  const handleReset =()=>{
+    setUsers(originalUsers.current)
+  }
+  
+
   useEffect(() => {
     fetch('https://randomuser.me/api?results=10')
       .then(async (res) => await res.json())
       .then((res) => {
         setUsers(res.results);
+        originalUsers.current=res.results
+
       })
       .catch((err) => {
         console.error(err);
@@ -44,6 +52,9 @@ const App: React.FC = () => {
         </button>
         <button onClick={toggleSortByCountry} className='btn btn-xs sm:btn-sm md:btn-md lg:btn-lg'>
           {sortByCountry ? 'No ordenar por país' : 'Ordenar por país'}
+        </button>
+        <button onClick={handleReset} className='btn btn-xs sm:btn-sm md:btn-md lg:btn-lg'>
+          Reset Users
         </button>
       </header>
       <main>
