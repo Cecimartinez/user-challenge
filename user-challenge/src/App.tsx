@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import './App.css';
+import './index.css';
 import { UserTable } from './components/UserTable/UserTable';
 
 const App: React.FC = () => {
@@ -45,15 +45,15 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1 className='text-red-500'>Prueba Técnica!</h1>
-      <header>
-        <button onClick={toggleColor} className='btn btn-xs sm:btn-sm md:btn-md lg:btn-lg'>
+      <h1 className='text-[#cfcfcf] font-normal'>User Challenge</h1>
+      <header className='my-5  py-1 rounded-xl'>
+        <button onClick={toggleColor} className=' mx-2 text-sm bg-indigo-600 text-white font-normal border-0 '>
           Color rows
         </button>
-        <button onClick={toggleSortByCountry} className='btn btn-xs sm:btn-sm md:btn-md lg:btn-lg'>
+        <button onClick={toggleSortByCountry} className=' mx-2 text-sm bg-indigo-600 text-white font-normal border-0 '>
           {sortByCountry ? 'No ordenar por país' : 'Ordenar por país'}
         </button>
-        <button onClick={handleReset} className='btn btn-xs sm:btn-sm md:btn-md lg:btn-lg'>
+        <button onClick={handleReset} className=' mx-2 text-sm bg-indigo-600 text-white font-normal border-0 '>
           Reset Users
         </button>
       </header>
